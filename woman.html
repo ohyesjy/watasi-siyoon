@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Character · watasi siyoon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@400;600;700&family=Rubik+Bubbles&family=Caveat:wght@700&family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  color:#111;font-family:'Fredoka','Noto Sans KR',sans-serif;
+  background:
+    linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18)),
+    url('woman-bg.jpeg') center center / cover no-repeat fixed,
+    #dfe7f7;
+  min-height:100vh;
+}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:36px 24px 80px;position:relative}
+
+/* top bar */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.back{
+  font-family:'Bungee',sans-serif;font-size:16px;letter-spacing:2px;
+  background:#fff;border:2px solid #111;border-radius:999px;padding:8px 18px;
+  box-shadow:3px 3px 0 #111;text-decoration:none;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.back:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #111}
+.back:active{transform:translate(1px,1px);box-shadow:2px 2px 0 #111}
+.brand{font-family:'Rubik Bubbles',cursive;font-size:26px;-webkit-text-stroke:1.5px #111;letter-spacing:2px;color:#fff}
+
+/* hero */
+.hero{
+  display:grid;grid-template-columns:300px 1fr;gap:28px;
+  background:#fff;border:2.5px solid #111;border-radius:18px;
+  padding:24px;box-shadow:6px 6px 0 #111;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"CHARACTER";position:absolute;right:-20px;top:18px;
+  font-family:'Bungee';font-size:88px;color:rgba(233,120,178,.08);letter-spacing:8px;
+  pointer-events:none;
+}
+.hero-img{
+  width:300px;height:380px;overflow:hidden;border:2px solid #111;
+  border-radius:14px;background:#fde6ef;box-shadow:3px 3px 0 #111;
+}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.hero-info{display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.cat-chip{
+  display:inline-block;background:#ffd7ea;border:2px solid #111;border-radius:999px;
+  padding:4px 14px;font-family:'Bungee';font-size:13px;letter-spacing:2px;margin-bottom:14px;
+  box-shadow:2px 2px 0 #111;align-self:flex-start;
+}
+.name{
+  font-family:'Rubik Bubbles',cursive;font-size:78px;line-height:.95;
+  -webkit-text-stroke:2px #111;letter-spacing:1px;
+}
+.name small{
+  display:block;font-family:'Caveat';font-size:32px;font-weight:700;color:#666;
+  -webkit-text-stroke:0;margin-top:4px;letter-spacing:1px;
+}
+.tagline{
+  margin-top:14px;font-family:'Caveat';font-weight:700;font-size:24px;
+  background:#e4d8ff;border:2px solid #111;border-radius:12px;padding:8px 14px;
+  display:inline-block;
+}
+
+/* stat row */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.stat{
+  background:#fff;border:2px solid #111;border-radius:12px;padding:12px 14px;
+  box-shadow:3px 3px 0 #111;
+}
+.stat .k{font-family:'Bungee';font-size:11px;letter-spacing:1.5px;color:#a04d7c}
+.stat .v{font-family:'Fredoka';font-weight:700;font-size:17px;margin-top:3px}
+
+/* section */
+.section{
+  margin-top:30px;background:#fff;border:2.5px solid #111;border-radius:18px;
+  padding:22px 24px;box-shadow:5px 5px 0 #111;position:relative;
+}
+.section h2{
+  font-family:'Bungee';font-size:20px;letter-spacing:2px;margin-bottom:14px;
+  display:inline-block;background:#ffd7ea;border:2px solid #111;border-radius:999px;
+  padding:6px 16px;box-shadow:2px 2px 0 #111;
+}
+.section p{font-size:15px;line-height:1.7;color:#222;margin-bottom:10px}
+.section p:last-child{margin-bottom:0}
+
+.traits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+.trait{
+  background:#fff5fa;border:2px solid #111;border-radius:12px;padding:12px 14px;
+  box-shadow:2px 2px 0 #111;
+}
+.trait .t{font-family:'Bungee';font-size:12px;letter-spacing:1.5px;color:#111;margin-bottom:6px}
+.trait .d{font-size:14px;line-height:1.5;color:#333}
+
+.timeline{list-style:none;padding:0;margin:0}
+.timeline li{
+  padding:12px 14px;border:2px solid #111;border-radius:12px;margin-bottom:10px;
+  background:#eef2ff;box-shadow:2px 2px 0 #111;
+  display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:start;
+}
+.timeline li:last-child{margin-bottom:0}
+.timeline .age{font-family:'Bungee';font-size:13px;letter-spacing:1px;background:#e4d8ff;border:2px solid #111;border-radius:999px;padding:4px 10px;text-align:center;align-self:center}
+.timeline .ev{font-size:14px;line-height:1.55}
+
+.quote{
+  margin-top:26px;padding:22px 26px;background:#fff;border:3px dashed #111;
+  border-radius:18px;font-family:'Caveat';font-weight:700;font-size:30px;text-align:center;
+  position:relative;
+}
+.quote::before,.quote::after{
+  font-family:'Bungee';font-size:42px;color:#ffd7ea;-webkit-text-stroke:2px #111;
+  position:absolute;line-height:1;
+}
+.quote::before{content:"\201C";left:14px;top:8px}
+.quote::after{content:"\201D";right:14px;bottom:-18px}
+
+footer{
+  margin-top:40px;text-align:center;font-family:'Bungee';font-size:12px;
+  letter-spacing:2px;color:#fff;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3);
+}
+
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr}
+  .hero-img{width:100%;height:320px}
+  .name{font-size:58px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .traits{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <a class="back" href="index.html">← BACK</a>
+      <div class="brand">watasi siyoon</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-img">
+        <img src="IMG_9990.jpeg" alt="여자 캐릭터">
+      </div>
+      <div class="hero-info">
+        <span class="cat-chip">CHARACTER · 02</span>
+        <div class="name">유하<small>Yuha · 彼女</small></div>
+        <div class="tagline">웃음이 많은 분홍빛 오후, 마음을 밝히는 소녀</div>
+
+        <div class="stats">
+          <div class="stat"><div class="k">AGE</div><div class="v">18</div></div>
+          <div class="stat"><div class="k">HEIGHT</div><div class="v">163 cm</div></div>
+          <div class="stat"><div class="k">MBTI</div><div class="v">ENFP</div></div>
+          <div class="stat"><div class="k">BIRTH</div><div class="v">04 / 14</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section">
+      <h2>ABOUT</h2>
+      <p>분홍색 옷을 즐겨 입고, 햇살이 드는 창가에서 책을 읽는 시간을 가장 좋아한다. 낯선 사람에게도 먼저 인사할 수 있는 따뜻한 성격이다.</p>
+      <p>손으로 직접 쓴 편지와 폴라로이드 사진을 좋아한다. 작은 감동을 오래 간직하는 타입 — 기억에 남는 건 풍경보다 '그 순간의 온도'.</p>
+    </section>
+
+    <!-- TRAITS -->
+    <section class="section">
+      <h2>TRAITS</h2>
+      <div class="traits">
+        <div class="trait"><div class="t">성격</div><div class="d">밝고 다정함. 마음이 여려서 작은 말에도 눈물이 고인다.</div></div>
+        <div class="trait"><div class="t">좋아하는 것</div><div class="d">봄바람 · 수제 쿠키 · 빈티지 카페 · 데이지 꽃</div></div>
+        <div class="trait"><div class="t">싫어하는 것</div><div class="d">거친 말투 · 벌레 · 고수 · 오래 걷는 일</div></div>
+        <div class="trait"><div class="t">버릇</div><div class="d">말할 때 머리를 귀 뒤로 넘긴다. 생각할 땐 입술을 살짝 깨문다.</div></div>
+        <div class="trait"><div class="t">특기</div><div class="d">베이킹. 한번 만든 레시피는 잊지 않는다.</div></div>
+        <div class="trait"><div class="t">약점</div><div class="d">부탁을 잘 거절하지 못한다. 기분이 표정에 바로 드러남.</div></div>
+      </div>
+    </section>
+
+    <!-- BACKGROUND -->
+    <section class="section">
+      <h2>BACKGROUND</h2>
+      <ul class="timeline">
+        <li><span class="age">ch.1</span><span class="ev">할머니가 운영하시던 꽃집 2층에서 어린 시절을 보냄.</span></li>
+        <li><span class="age">ch.2</span><span class="ev">중학생 때 처음 베이킹을 시작. 친구들에게 쿠키를 나눠주는 게 낙이었음.</span></li>
+        <li><span class="age">ch.3</span><span class="ev">고등학교 졸업 후 작은 카페에서 아르바이트. 손님의 취향을 기억해주는 걸 좋아함.</span></li>
+        <li><span class="age">now</span><span class="ev">자취방 창가에 허브 화분 네 개. 비 오는 날엔 창문을 열어두고 글씨를 씀.</span></li>
+      </ul>
+    </section>
+
+    <div class="quote">
+      천천히 피어나는 꽃처럼, 유하는 곁에 있는 사람을 오래 따뜻하게 한다.
+    </div>
+
+    <footer>© WATASI SIYOON · CHARACTER PAGE</footer>
+  </div>
+</body>
+</html>

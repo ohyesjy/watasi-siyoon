@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>siyoon 1036 — Meatless Monday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik+Bubbles&family=Rubik+Puddles&family=Fredoka:wght@400;500;600;700&family=Caveat:wght@400;600;700&family=Shadows+Into+Light&family=Gochi+Hand&family=Permanent+Marker&family=Architects+Daughter&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky-top:#bce2f4;
+  --sky-bot:#a7d8ef;
+  --grass:#9ac74a;
+  --grass-dk:#7db53c;
+  --yellow:#f1f14a;
+  --yellow-soft:#fff58a;
+  --ink:#111;
+  --mint:#c9e9b6;
+  --paper:#f3f0e7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#ece9df;font-family:'Fredoka',sans-serif;color:#111}
+body{
+  background:
+    repeating-linear-gradient(#0000 0 56px,#dad6ca 56px 57px),
+    repeating-linear-gradient(90deg,#0000 0 56px,#dad6ca 56px 57px),
+    #ece9df;
+}
+
+/* ===== Outer container (1080 wide like a page) ===== */
+.page{
+  max-width:1080px;
+  margin:0 auto;
+  padding:52px 44px 80px;
+  position:relative;
+}
+
+/* ===== Page header: KUMMBA ===== */
+.kummba-header{
+  position:relative;
+  height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:30px;
+}
+.kummba-logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Bungee',sans-serif;
+  font-size:40px;letter-spacing:1px;
+  color:#111;
+}
+.kummba-logo .cn{font-family:'Noto Sans SC','Microsoft YaHei',sans-serif;font-weight:900;font-size:34px;margin-left:4px}
+.kummba-logo .cat{width:48px;height:auto;display:inline-block;vertical-align:middle;margin:0 4px}
+.kummba-tag{
+  position:absolute;left:calc(50% - 210px);top:54px;
+  background:#f1f14a;padding:3px 10px;border:1.5px solid #111;border-radius:3px;
+  font-family:'Fredoka';font-weight:600;font-size:13px;letter-spacing:1px;
+}
+.kummba-num{
+  position:absolute;right:20px;top:18px;
+  font-family:'Bungee',sans-serif;font-size:44px;letter-spacing:2px;color:#111;
+}
+
+/* doodles floating around header */
+.flower{
+  position:absolute;left:20px;top:10px;width:90px;height:90px;
+}
+.flower svg{width:100%;height:100%}
+.squiggle-top{
+  position:absolute;left:140px;top:-2px;width:60px;height:22px;
+}
+.grid-corner-tr{
+  position:absolute;right:-10px;top:60px;width:70px;height:70px;
+  background-image:
+   linear-gradient(#111 1px,transparent 1px),
+   linear-gradient(90deg,#111 1px,transparent 1px);
+  background-size:14px 14px;opacity:.85;
+  mask:linear-gradient(135deg,#000 50%,transparent 70%);
+  -webkit-mask:linear-gradient(135deg,#000 50%,transparent 70%);
+}
+.grid-corner-bl{
+  position:absolute;left:-10px;bottom:160px;width:90px;height:90px;
+  background-image:
+   linear-gradient(#111 1px,transparent 1px),
+   linear-gradient(90deg,#111 1px,transparent 1px);
+  background-size:14px 14px;opacity:.85;
+  mask:linear-gradient(315deg,#000 50%,transparent 70%);
+  -webkit-mask:linear-gradient(315deg,#000 50%,transparent 70%);
+}
+.bottom-spring{
+  position:absolute;left:36%;bottom:12px;width:180px;height:40px;
+}
+
+/* ===== SLIDE base (each slide is a bordered rectangle) ===== */
+.slide{
+  position:relative;
+  background:#fff;
+  border:2.5px solid #111;
+  border-radius:6px;
+  overflow:hidden;
+}
+.slide.wide{height:548px;margin-bottom:24px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.row .slide{height:378px}
+
+/* ===== Slide 1: Cover ===== */
+.cover{
+  background:
+    linear-gradient(#bde2f4,#a7d8ef 55%,#a7d8ef 60%,#a7d8ef 60%);
+}
+.cover::before{
+  /* grass hills */
+  content:"";position:absolute;left:0;right:0;bottom:0;height:38%;
+  background:
+    radial-gradient(ellipse 62% 90% at 18% 100%,#a9d155 0 60%,transparent 62%),
+    radial-gradient(ellipse 80% 90% at 85% 100%,#9ac74a 0 62%,transparent 64%),
+    linear-gradient(#b6d968,#9ac74a);
+}
+.cover::after{
+  /* clouds */
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(30px 18px at 16% 22%,#fff 98%,transparent),
+    radial-gradient(24px 14px at 22% 20%,#fff 98%,transparent),
+    radial-gradient(26px 16px at 70% 14%,#fff 98%,transparent),
+    radial-gradient(22px 13px at 75% 18%,#fff 98%,transparent),
+    radial-gradient(28px 16px at 88% 28%,#fff 98%,transparent),
+    radial-gradient(20px 12px at 8% 44%,#fff 96%,transparent),
+    radial-gradient(24px 14px at 60% 36%,#fff 96%,transparent);
+  pointer-events:none;
+  opacity:.95;
+}
+.cover-top{
+  position:absolute;left:28px;right:28px;top:22px;
+  display:flex;justify-content:space-between;align-items:center;z-index:3;
+  font-family:'Fredoka';font-weight:500;font-size:13px;letter-spacing:1px;
+}
+.cover-top .pill{
+  border:1.5px solid #111;border-radius:999px;padding:5px 14px;background:#fff;color:#111;
+}
+.cover-top a.stickit-pill{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:0;border:none;background:transparent;box-shadow:none;
+  cursor:pointer;text-decoration:none;
+  transition:transform .12s ease, filter .12s ease;
+}
+.cover-top a.stickit-pill img{
+  display:block;height:34px;width:auto;
+  filter:drop-shadow(2px 2px 0 rgba(0,0,0,.15));
+}
+.cover-top a.stickit-pill:hover{transform:translate(-1px,-2px) rotate(-2deg)}
+.cover-top a.stickit-pill:hover img{filter:drop-shadow(3px 3px 0 rgba(0,0,0,.25))}
+.cover-top a.stickit-pill:active{transform:translate(1px,1px) rotate(0)}
+.cover-title{
+  position:absolute;left:0;right:0;top:86px;z-index:3;text-align:center;
+}
+.meat-less-monday{
+  font-family:'Rubik Bubbles',cursive;
+  font-size:110px;
+  line-height:.95;
+  letter-spacing:2px;
+  color:#111;
+  -webkit-text-stroke:2px #111;
+  display:inline-block;
+  position:relative;
+  text-align:center;
+}
+.meat-less-monday .line-1,
+.meat-less-monday .line-2{
+  display:block;
+  line-height:.92;
+}
+.meat-less-monday .line-2{
+  position:relative;
+  margin-top:4px;
+}
+.meat-less-monday .less{
+  display:inline-block;
+  background:#fff;
+  border:2px solid #111;
+  padding:2px 10px 0;
+  transform:rotate(-4deg) translateY(-6px);
+  font-family:'Bungee',sans-serif;
+  -webkit-text-stroke:0;
+  font-size:68px;
+  box-shadow:3px 3px 0 #111;
+  margin:0 6px;
+}
+.bodies-plan{
+  margin-top:14px;
+  font-family:'Rubik Bubbles',cursive;
+  font-size:78px;line-height:1;
+  letter-spacing:2px;
+  color:#111;-webkit-text-stroke:2px #111;
+  position:relative;display:inline-block;
+}
+.nourish-tag{
+  display:inline-block;
+  background:#e9c9a6;
+  border:2px solid #111;
+  border-radius:999px;
+  padding:4px 22px 6px;
+  font-family:'Caveat',cursive;font-weight:700;font-size:44px;
+  color:#111;-webkit-text-stroke:0;
+  transform:rotate(-6deg) translateY(6px);
+  margin-right:8px;
+}
+.apple{display:inline-block;width:66px;height:66px;vertical-align:-14px;margin:0 2px}
+.broccoli{display:inline-block;width:110px;height:110px;vertical-align:-28px;margin-left:2px}
+.sprout{display:inline-block;width:44px;height:44px;vertical-align:14px}
+
+.contact-bar{
+  position:absolute;left:28px;right:28px;bottom:24px;z-index:4;
+  background:#f1f14a;border:2px solid #111;border-radius:4px;
+  display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;
+  height:44px;
+  font-family:'Fredoka';font-weight:600;font-size:14px;letter-spacing:1px;
+}
+.contact-bar > div{display:flex;align-items:center;gap:8px;justify-content:center;padding:0 12px}
+.contact-bar .sep{width:1.5px;height:20px;background:#111;opacity:.6}
+.contact-bar .arrow{display:inline-block;transform:translateY(1px)}
+.contact-bar a{color:#111;text-decoration:underline;text-underline-offset:3px}
+
+/* decorative scribbles on cover */
+.c-scribble{position:absolute;z-index:2}
+.c-scribble.s1{left:40px;top:70px;width:60px;height:30px}
+.c-scribble.s2{right:60px;top:80px;width:80px;height:36px}
+.c-scribble.s3{left:60px;bottom:150px;width:70px;height:30px}
+
+/* ===== Slide 2: TOC ===== */
+.toc-head{
+  position:absolute;left:30px;top:24px;
+  background:#f1f14a;border:2px solid #111;border-radius:999px;
+  padding:5px 18px;font-family:'Bungee';font-size:16px;letter-spacing:2px;
+}
+.toc-list{position:absolute;left:30px;top:30px;right:225px;display:flex;flex-direction:column;gap:14px}
+.toc-row{display:grid;grid-template-columns:110px 1fr;align-items:start;gap:14px}
+.subject-chip{
+  background:#fff;border:2px solid #111;border-radius:999px;
+  padding:4px 14px;font-family:'Fredoka';font-weight:600;font-size:14px;
+  text-align:center;
+}
+.toc-main{
+  background:#d8f0a7;border:2px solid #111;border-radius:14px;
+  padding:6px 14px 8px;
+  font-family:'Fredoka';font-weight:600;font-size:15px;
+  position:relative;
+}
+.toc-main .sub{display:block;margin-top:2px;font-weight:400;font-size:12px;color:#444}
+.toc-main .sub::before{content:"↳ ";color:#666}
+
+.toc-right{
+  position:absolute;right:20px;top:20px;
+  width:190px;height:338px;
+  border:2px solid #111;border-radius:14px;overflow:hidden;
+  background:#f7f1e6;
+  box-shadow:3px 3px 0 #111;
+  display:block;cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.toc-right:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #111}
+.toc-right:active{transform:translate(1px,1px);box-shadow:2px 2px 0 #111}
+.toc-right img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  display:block;
+}
+
+/* ===== Slide 3: Subject divider ===== */
+.subject-divider{
+  background:#fff;
+}
+.subject-bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  display:block;z-index:0;
+}
+.cloud-tag{
+  position:absolute;left:50%;top:20px;transform:translateX(-50%);z-index:20;
+  background:#fff;border:2px solid #111;border-radius:60px;
+  padding:10px 28px;font-family:'Caveat';font-weight:700;font-size:32px;line-height:1.05;
+  text-align:center;box-shadow:0 0 0 2px #fff inset;
+  color:#111;text-decoration:none;cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.cloud-tag:hover{transform:translateX(-50%) translateY(-2px);box-shadow:0 0 0 2px #fff inset, 4px 4px 0 #d8a8ff}
+.cloud-tag:active{transform:translateX(-50%) translateY(1px)}
+.cloud-tag .cloud-tag-ko{
+  display:block;margin-top:4px;
+  font-family:'Noto Sans KR','Fredoka',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.5px;
+}
+.cloud-tag::before,.cloud-tag::after{
+  content:"";position:absolute;background:#fff;border:2px solid #111;border-radius:50%;
+}
+.cloud-tag::before{width:24px;height:24px;left:-10px;bottom:-6px}
+.cloud-tag::after{width:16px;height:16px;right:-6px;top:-10px}
+.subject-title{
+  position:absolute;left:0;right:0;top:160px;text-align:center;
+  font-family:'Rubik Bubbles';font-size:60px;line-height:1.02;color:#111;-webkit-text-stroke:2px #111;letter-spacing:2px;
+  padding:0 40px;
+}
+.subject-title .amp{font-family:'Caveat';font-size:58px;-webkit-text-stroke:0;color:#111;font-weight:700;margin:0 12px}
+.subject-title .carrot{display:inline-block;width:40px;height:40px;vertical-align:-2px}
+.subject-title .basket{display:inline-block;width:58px;height:58px;vertical-align:-14px}
+
+/* ===== Slide 4: World Vegetarian Day ===== */
+.yellow-head{
+  position:absolute;left:24px;right:24px;top:20px;
+  background:#f1f14a;border:2px solid #111;border-radius:6px;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:6px 14px;font-family:'Fredoka';font-weight:600;font-size:12px;letter-spacing:1px;
+}
+.yellow-head .ttl{display:flex;flex-direction:column}
+.yellow-head .ttl strong{font-family:'Bungee';font-size:15px;letter-spacing:2px}
+.yellow-head .ttl em{font-style:normal;font-size:11px;letter-spacing:2px}
+.yellow-head .meta{display:flex;flex-direction:column;text-align:right;font-size:11px;letter-spacing:1px}
+.yellow-head .meta span:first-child::before{content:"# "}
+.yellow-head .meta span:last-child::before{content:"@ "}
+
+.wvd-title{
+  position:absolute;left:24px;top:72px;z-index:20;
+  background:#fff;border:2px solid #111;border-radius:999px;
+  padding:6px 18px;font-family:'Bungee';font-size:16px;letter-spacing:1.5px;
+}
+.wvd-sub{
+  position:absolute;left:30px;top:112px;
+  font-family:'Fredoka';font-weight:600;font-size:11px;letter-spacing:2px;color:#333;
+}
+.wvd-facts{
+  position:absolute;left:24px;top:140px;right:260px;display:flex;flex-direction:column;gap:10px;
+}
+.fact-card{
+  background:#d8f0a7;border:2px solid #111;border-radius:10px;
+  padding:8px 12px;font-family:'Fredoka';font-size:12px;line-height:1.45;position:relative;
+}
+.fact-card::before{
+  content:"→";position:absolute;left:-22px;top:8px;font-size:18px;color:#111;
+}
+.globe-wrap{
+  position:absolute;right:20px;top:20px;width:180px;height:320px;
+  border:2px solid #111;border-radius:14px;overflow:hidden;
+  background:#f7f1e6;box-shadow:3px 3px 0 #111;
+  display:block;cursor:pointer;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.globe-wrap:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #111}
+.globe-wrap:active{transform:translate(1px,1px);box-shadow:2px 2px 0 #111}
+.globe-wrap img.character{
+  width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
+}
+.globe-badge{
+  position:absolute;right:-10px;top:-10px;width:86px;height:86px;
+  border-radius:50%;background:#fff;border:2px solid #111;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:'Caveat';font-weight:700;font-size:14px;line-height:1.1;
+  transform:rotate(10deg);
+  box-shadow:3px 3px 0 #111;
+}
+.globe-badge .fork{position:absolute;left:-16px;top:30%;width:22px;height:22px}
+
+/* ===== Slide 5: Meatless Monday ===== */
+.mm-grid{
+  position:absolute;left:24px;top:76px;width:300px;height:250px;
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:6px;
+  border:2px solid #111;overflow:hidden;border-radius:6px;
+}
+.mm-cell{border:1.5px solid #111}
+.mm-cell.c1{background:linear-gradient(#8a2a4a,#b94a74 60%,#d18aa3)}
+.mm-cell.c2{background:linear-gradient(135deg,#f5b142 0 50%,#e07a28 50% 100%)}
+.mm-cell.c3{grid-row:span 2;background:
+  radial-gradient(circle at 30% 40%,#f25c4a 12px,transparent 14px),
+  radial-gradient(circle at 65% 30%,#f25c4a 12px,transparent 14px),
+  radial-gradient(circle at 45% 70%,#f25c4a 14px,transparent 16px),
+  #c8311f}
+.mm-cell.c4{background:
+  radial-gradient(circle at 30% 40%,#6a5b2c 10px,transparent 12px),
+  radial-gradient(circle at 60% 60%,#6a5b2c 10px,transparent 12px),
+  linear-gradient(#c9a96b,#a17e3b)}
+.mm-cell.c5{background:
+  radial-gradient(14px 20px at 30% 45%,#8ac73a 99%,transparent),
+  radial-gradient(14px 20px at 60% 55%,#8ac73a 99%,transparent),
+  #d9e89a}
+
+.mm-right{position:absolute;right:24px;top:90px;width:320px}
+.mm-badge{
+  background:#fff;border:2px dashed #111;border-radius:18px;padding:16px 18px;
+  font-family:'Fredoka';font-size:12px;line-height:1.45;
+  position:relative;
+}
+.mm-badge::before{
+  content:"MEATLESS MONDAY";
+  position:absolute;left:50%;top:-14px;transform:translateX(-50%);
+  background:#f1f14a;border:2px solid #111;border-radius:999px;
+  padding:3px 14px;font-family:'Bungee';font-size:13px;letter-spacing:1px;
+}
+.mm-quote{
+  margin-top:10px;text-align:center;font-family:'Caveat';font-weight:700;font-size:15px;
+}
+.mm-quote b{display:block;font-size:11px;letter-spacing:1px;font-family:'Fredoka';font-weight:600;color:#555;margin-bottom:4px}
+
+/* small utilities */
+.scribble{position:absolute;pointer-events:none}
+.spring-line{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:60%;height:20px}
+
+/* shadows/holes punched into slide edges (paper vibe) */
+.slide .punch{
+  position:absolute;background:#ece9df;border:1.5px solid #111;width:14px;height:14px;border-radius:50%;
+}
+
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- flower doodle -->
+  <div class="flower" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><g fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round">
+      <ellipse cx="50" cy="24" rx="13" ry="18"/>
+      <ellipse cx="50" cy="76" rx="13" ry="18"/>
+      <ellipse cx="24" cy="50" rx="18" ry="13"/>
+      <ellipse cx="76" cy="50" rx="18" ry="13"/>
+      <circle cx="50" cy="50" r="9" fill="#fff"/>
+    </g></svg>
+  </div>
+
+  <!-- Header: KUMMBA -->
+  <header class="kummba-header">
+    <div class="kummba-logo">
+      siyoon
+      <img class="cat" src="cat9994.png" alt="siyoon character">
+    </div>
+  </header>
+
+  <!-- Slide 1: Cover -->
+  <section class="slide wide cover" aria-label="cover">
+    <div class="cover-top">
+      <div class="pill">siyoon MONDAY ORGANIZATION</div>
+      <a class="stickit-pill" href="https://stickit.art/user/196577" target="_blank" rel="noopener noreferrer" aria-label="Stickit 방문">
+        <img src="stickit.png" alt="Stickit">
+      </a>
+    </div>
+
+    <div class="cover-title">
+      <div class="meat-less-monday">
+        <div class="line-1">watasi</div>
+        <div class="line-2">siyoon
+          <!-- tiny sprout -->
+          <svg class="sprout" viewBox="0 0 40 40" style="position:absolute;right:-10px;top:-18px">
+            <g fill="none" stroke="#111" stroke-width="2"><path d="M20 36 V18" stroke-linecap="round"/>
+            <path d="M20 22 C10 20 8 10 18 8 C20 16 22 20 20 22 Z" fill="#8ac73a"/></g>
+          </svg>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <span class="nourish-tag">Nourish</span>
+        <span class="bodies-plan">B
+          <!-- apple for O -->
+          <svg class="apple" viewBox="0 0 60 60">
+            <g>
+              <path d="M30 14 C22 8 10 14 10 28 C10 44 22 56 30 56 C38 56 50 44 50 28 C50 14 38 8 30 14 Z" fill="#e24b3c" stroke="#111" stroke-width="2.5"/>
+              <path d="M30 18 C28 12 32 6 38 6" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M26 18 C28 22 32 22 34 18" fill="#8ac73a" stroke="#111" stroke-width="2"/>
+            </g>
+          </svg>DIES
+          <span class="amp" style="font-family:'Caveat';-webkit-text-stroke:0;font-size:58px">&amp;</span>
+          PLAN
+          <svg class="broccoli" viewBox="0 0 120 120" style="vertical-align:-22px">
+            <g>
+              <circle cx="30" cy="40" r="18" fill="#3f8b2e" stroke="#111" stroke-width="2.5"/>
+              <circle cx="60" cy="30" r="22" fill="#4ea73a" stroke="#111" stroke-width="2.5"/>
+              <circle cx="88" cy="44" r="18" fill="#3f8b2e" stroke="#111" stroke-width="2.5"/>
+              <circle cx="46" cy="56" r="16" fill="#4ea73a" stroke="#111" stroke-width="2.5"/>
+              <circle cx="74" cy="58" r="16" fill="#4ea73a" stroke="#111" stroke-width="2.5"/>
+              <path d="M40 70 L40 96 M60 70 L60 100 M80 70 L80 96" stroke="#c9d58a" stroke-width="10" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Contact bar -->
+    <div class="contact-bar">
+      <div><span class="arrow">↳</span> <strong>PHONE.</strong> <a href="tel:01012345678">010-1234-5678</a></div>
+      <div class="sep"></div>
+      <div><a href="#"><strong>siyoon KABENER</strong></a></div>
+      <div class="sep"></div>
+      <div><strong>/</strong> <a href="#">IG. @YOURACCOUTHERE</a></div>
+    </div>
+  </section>
+
+  <!-- Row: Slide 2 (TOC) & Slide 3 (Subject) -->
+  <div class="row">
+    <!-- Slide 2: TOC -->
+    <section class="slide" aria-label="table of content">
+      <div class="toc-list">
+        <div class="toc-row">
+          <div class="subject-chip">Subject 01</div>
+          <div class="toc-main">World Vegetarian Day &amp; Meatless Monday
+            <span class="sub">Overview of World Vegetarian Day &amp; Meatless Monday</span>
+            <span class="sub">Enter the subtitle</span>
+          </div>
+        </div>
+        <div class="toc-row">
+          <div class="subject-chip">Subject 02</div>
+          <div class="toc-main">Benefits to our Health &amp; Environment
+            <span class="sub">Benefits to our Health</span>
+            <span class="sub">Benefits to our Environment</span>
+          </div>
+        </div>
+        <div class="toc-row">
+          <div class="subject-chip">Subject 03</div>
+          <div class="toc-main">Alternative Cuisines
+            <span class="sub">Enter the subtitle</span>
+            <span class="sub">Enter the subtitle</span>
+          </div>
+        </div>
+        <div class="toc-row">
+          <div class="subject-chip">Subject 04</div>
+          <div class="toc-main">Challenge for You
+            <span class="sub">Enter the subtitle</span>
+            <span class="sub">Enter the subtitle</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- right side: 남자 이미지 -->
+      <a class="toc-right" href="character.html" aria-label="남자 캐릭터 페이지">
+        <img src="IMG_0946.JPG" alt="siyoon">
+      </a>
+    </section>
+
+    <!-- Slide 3: Subject divider -->
+    <section class="slide subject-divider" aria-label="subject divider">
+      <img class="subject-bg" src="IMG_9977.jpeg" alt="subject image">
+      <a class="cloud-tag" href="commission.html" aria-label="집요한의 커미션아트 페이지">Subject<br><span class="cloud-tag-ko">집요한의 커미션아트</span></a>
+    </section>
+  </div>
+
+  <!-- Row: Slide 4 (WVD content) & Slide 5 (MM content) -->
+  <div class="row">
+    <!-- Slide 4: World Vegetarian Day content -->
+    <section class="slide" aria-label="world vegetarian day">
+      <div class="yellow-head">
+        <div class="ttl"><strong>WORLE VEGETARIAN DAY</strong><em>&amp;    MEATLESS MONDAY</em></div>
+        <div class="meta"><span>WORLD VEGETARIAN DAY</span><span>MEATLESS MONDAY</span><span>2XXX.10/01</span></div>
+      </div>
+      <div class="wvd-title">World Vegetarian Day</div>
+      <div class="wvd-sub">FACTS ABOUT  WORLD VEGETARIAN DAY</div>
+      <div class="wvd-facts">
+        <div class="fact-card">World Vegetarian Day, celebrated on October 1st, was established by the North American Vegetarian Society in 1977.</div>
+        <div class="fact-card">Vegetarian Awareness Month kicks off with a day encouraging people to explore vegetarianism's benefits.</div>
+      </div>
+
+      <a class="globe-wrap" href="woman.html" aria-label="여자 캐릭터 페이지">
+        <img class="character" src="IMG_9990.jpeg" alt="여자 캐릭터">
+      </a>
+    </section>
+
+    <!-- Slide 5: Meatless Monday content -->
+    <section class="slide" aria-label="meatless monday">
+      <div class="yellow-head">
+        <div class="ttl"><strong>WORLE VEGETARIAN DAY</strong><em>&amp;    MEATLESS MONDAY</em></div>
+        <div class="meta"><span>WORLD VEGETARIAN DAY</span><span>MEATLESS MONDAY</span><span>2XXX.10/01</span></div>
+      </div>
+
+      <div style="position:absolute;left:24px;top:72px;background:#fff;border:2px solid #111;border-radius:4px;padding:3px 10px;font-family:'Fredoka';font-weight:600;font-size:12px;">Doing Great!</div>
+
+      <div class="mm-grid">
+        <div class="mm-cell c1"></div>
+        <div class="mm-cell c2"></div>
+        <div class="mm-cell c3"></div>
+        <div class="mm-cell c4"></div>
+        <div class="mm-cell c5"></div>
+      </div>
+
+      <div class="mm-right">
+        <div class="mm-badge" style="margin-top:22px">
+          The initiative was launched in 2003 by the Johns Hopkins Bloomberg School of Public Health. The goal is to improve personal health and the health of the planet.
+          <div class="mm-quote">
+            <b>“GOOD FOR YOU,</b>
+            GOOD FOR THE PLANET”
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- corner decorations -->
+  <div class="grid-corner-tr"></div>
+  <div class="grid-corner-bl"></div>
+
+  <!-- spring doodle under everything -->
+  <svg class="bottom-spring" viewBox="0 0 180 40" aria-hidden="true">
+    <path d="M2 20 C10 4,20 36,30 20 S50 4,60 20 80 36,90 20 110 4,120 20 140 36,150 20 170 4,178 20"
+      fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round"/>
+  </svg>
+
+</div>
+
+<!-- Background music: YouTube embed with IFrame API control -->
+<div id="yt-wrap" aria-hidden="true">
+  <iframe id="yt-frame"
+    width="240" height="135"
+    src="https://www.youtube.com/embed/VDdLF1YubI0?autoplay=1&loop=1&playlist=VDdLF1YubI0&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+    title="background music"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen></iframe>
+</div>
+<button id="bgm-toggle" class="bgm-off" aria-label="음악 켜기/끄기">
+  <span class="bgm-icon">♪</span>
+  <span class="bgm-label">OFF</span>
+</button>
+
+<style>
+#yt-wrap{
+  position:fixed;right:18px;bottom:18px;z-index:9998;
+  width:240px;height:135px;
+  border:2px solid #111;border-radius:12px;overflow:hidden;
+  background:#000;box-shadow:3px 3px 0 #111;
+  display:none;
+}
+#yt-wrap.bgm-visible{display:block}
+#yt-wrap iframe{display:block;width:100%;height:100%;border:0}
+#bgm-toggle{
+  position:fixed;right:18px;top:18px;z-index:9999;
+  display:flex;align-items:center;gap:8px;
+  padding:10px 18px;min-width:96px;justify-content:center;
+  background:#fff;border:2px solid #111;border-radius:999px;color:#111;
+  font-family:'Bungee',sans-serif;font-size:14px;letter-spacing:2px;
+  box-shadow:3px 3px 0 #111;
+  cursor:pointer;user-select:none;
+  transition:transform .1s ease, background .15s ease, box-shadow .1s ease;
+}
+#bgm-toggle:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #111}
+#bgm-toggle:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+#bgm-toggle .bgm-icon{font-size:18px;line-height:1}
+#bgm-toggle.bgm-on{background:#f1f14a}
+#bgm-toggle.bgm-on .bgm-icon{animation:bgm-spin 2s linear infinite}
+@keyframes bgm-spin{to{transform:rotate(360deg)}}
+</style>
+
+<script>
+(function(){
+  var btn = document.getElementById('bgm-toggle');
+  var wrap = document.getElementById('yt-wrap');
+  var frame = document.getElementById('yt-frame');
+  if(!btn || !wrap || !frame) return;
+
+  var VIDEO_ID = 'VDdLF1YubI0';
+  var isOn = false;
+  var started = false;
+
+  function setLabel(on){
+    if(on){
+      btn.classList.add('bgm-on');
+      btn.classList.remove('bgm-off');
+      btn.querySelector('.bgm-label').textContent = 'ON';
+    } else {
+      btn.classList.remove('bgm-on');
+      btn.classList.add('bgm-off');
+      btn.querySelector('.bgm-label').textContent = 'OFF';
+    }
+  }
+
+  function loadIframe(mute){
+    frame.src = 'https://www.youtube.com/embed/' + VIDEO_ID +
+      '?autoplay=1&loop=1&playlist=' + VIDEO_ID +
+      '&controls=1&modestbranding=1&rel=0&playsinline=1' +
+      (mute ? '&mute=1' : '');
+  }
+  function unloadIframe(){
+    frame.src = '';
+  }
+
+  // Attempt muted autoplay immediately on page load.
+  loadIframe(true);
+  wrap.classList.add('bgm-visible');
+  isOn = true;
+  // Keep label as OFF visually until sound is actually enabled.
+
+  // On first user interaction anywhere, unmute (reload with mute=0) so sound plays.
+  function enableSoundOnce(){
+    if(started) return;
+    started = true;
+    loadIframe(false); // reload with sound
+    wrap.classList.add('bgm-visible');
+    isOn = true;
+    setLabel(true);
+    document.removeEventListener('click', enableSoundOnce, true);
+    document.removeEventListener('keydown', enableSoundOnce, true);
+    document.removeEventListener('scroll', enableSoundOnce, true);
+    document.removeEventListener('touchstart', enableSoundOnce, true);
+  }
+  document.addEventListener('click', enableSoundOnce, true);
+  document.addEventListener('keydown', enableSoundOnce, true);
+  document.addEventListener('scroll', enableSoundOnce, true);
+  document.addEventListener('touchstart', enableSoundOnce, true);
+
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    // Prevent the global enableSoundOnce from running for this click — we handle it here.
+    started = true;
+    document.removeEventListener('click', enableSoundOnce, true);
+    document.removeEventListener('keydown', enableSoundOnce, true);
+    document.removeEventListener('scroll', enableSoundOnce, true);
+    document.removeEventListener('touchstart', enableSoundOnce, true);
+
+    if(!isOn){
+      // Turn ON — play with sound
+      loadIframe(false);
+      wrap.classList.add('bgm-visible');
+      isOn = true;
+      setLabel(true);
+    } else {
+      // Turn OFF — stop audio completely
+      unloadIframe();
+      wrap.classList.remove('bgm-visible');
+      isOn = false;
+      setLabel(false);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

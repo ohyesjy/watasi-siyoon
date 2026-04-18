@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>집요한의 커미션아트 · watasi siyoon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@400;600;700&family=Rubik+Bubbles&family=Caveat:wght@700&family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  color:#f5eaff;font-family:'Fredoka','Noto Sans KR',sans-serif;
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(198,112,220,.22), transparent 60%),
+    radial-gradient(900px 500px at 90% 30%, rgba(110,40,160,.25), transparent 60%),
+    radial-gradient(700px 500px at 50% 100%, rgba(60,10,90,.35), transparent 60%),
+    #120718;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:36px 28px 80px;position:relative}
+
+/* grain overlay */
+.grain{
+  position:fixed;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.14;
+  background-image:radial-gradient(#fff 1px, transparent 1px);
+  background-size:3px 3px;z-index:1;
+}
+
+/* top bar */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;position:relative;z-index:3}
+.back{
+  font-family:'Bungee',sans-serif;font-size:14px;letter-spacing:2px;
+  background:#fff;color:#111;border:2px solid #111;border-radius:999px;padding:8px 18px;
+  box-shadow:3px 3px 0 #d8a8ff;text-decoration:none;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.back:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #d8a8ff}
+.back:active{transform:translate(1px,1px);box-shadow:2px 2px 0 #d8a8ff}
+.brand{
+  font-family:'Rubik Bubbles',cursive;font-size:26px;letter-spacing:2px;color:#fff;
+  -webkit-text-stroke:1.5px #4a1363;
+  text-shadow:2px 2px 0 #5b1e7a;
+}
+
+/* hero */
+.hero{
+  position:relative;z-index:3;
+  border:2.5px solid #fff;border-radius:22px;padding:36px 40px 30px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,0) 60%),
+    #1c0b29;
+  box-shadow:6px 6px 0 #d8a8ff;
+  overflow:hidden;
+}
+.hero::before{
+  content:"COMMISSION";
+  position:absolute;right:-28px;top:14px;
+  font-family:'Bungee';font-size:120px;letter-spacing:10px;
+  color:rgba(216,168,255,.07);pointer-events:none;white-space:nowrap;
+}
+.chip{
+  display:inline-block;background:#d8a8ff;color:#1c0b29;
+  border:2px solid #fff;border-radius:999px;
+  padding:5px 14px;font-family:'Bungee';font-size:12px;letter-spacing:2px;
+  box-shadow:2px 2px 0 #4a1363;
+}
+.hero h1{
+  margin-top:16px;font-family:'Rubik Bubbles',cursive;
+  font-size:92px;line-height:.95;letter-spacing:1px;color:#fff;
+  -webkit-text-stroke:2px #fff;
+  text-shadow:5px 5px 0 #7a2fa8, 10px 10px 0 rgba(216,168,255,.4);
+}
+.hero h1 em{
+  display:block;font-style:normal;margin-top:10px;
+  font-family:'Noto Sans KR';font-weight:800;font-size:30px;letter-spacing:-.5px;
+  color:#f5d9ff;-webkit-text-stroke:0;text-shadow:3px 3px 0 #4a1363;
+}
+.hero p.lead{
+  margin-top:18px;max-width:620px;font-family:'Caveat';font-weight:700;font-size:24px;
+  color:#f5eaff;line-height:1.35;
+}
+.hero .meta{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;
+}
+.hero .meta span{
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.35);
+  padding:6px 12px;border-radius:999px;
+  font-family:'Bungee';font-size:11px;letter-spacing:2px;color:#fff;
+}
+
+/* gallery */
+.gallery{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:22px;
+  margin-top:40px;position:relative;z-index:3;
+}
+.piece{
+  position:relative;overflow:hidden;
+  border:2.5px solid #fff;border-radius:18px;
+  box-shadow:6px 6px 0 #d8a8ff;
+  background:#0f0618;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.piece:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 #d8a8ff}
+.piece img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+}
+.piece .badge{
+  position:absolute;left:14px;top:14px;z-index:2;
+  background:#fff;color:#1c0b29;
+  font-family:'Bungee';font-size:12px;letter-spacing:2px;
+  padding:5px 12px;border:2px solid #1c0b29;border-radius:999px;
+  box-shadow:2px 2px 0 #d8a8ff;
+}
+.piece .cap{
+  position:absolute;left:14px;right:14px;bottom:14px;z-index:2;
+  padding:10px 14px;border-radius:12px;
+  background:rgba(28,11,41,.8);border:1.5px solid rgba(255,255,255,.4);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  font-family:'Caveat';font-weight:700;font-size:20px;color:#f5eaff;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.piece .cap em{
+  font-style:normal;font-family:'Bungee';font-size:10px;letter-spacing:2px;color:#d8a8ff;
+}
+
+/* gallery layout — big + 2 */
+.piece-1{grid-column:1 / span 7;aspect-ratio:7/5}
+.piece-2{grid-column:8 / span 5;aspect-ratio:1/1}
+.piece-3{grid-column:1 / span 12;aspect-ratio:16/7}
+
+/* info band */
+.band{
+  margin-top:40px;position:relative;z-index:3;
+  background:#fff;color:#1c0b29;border:2.5px solid #fff;border-radius:22px;
+  padding:28px 32px;box-shadow:6px 6px 0 #d8a8ff;
+}
+.band h2{
+  font-family:'Bungee';font-size:22px;letter-spacing:2px;
+  display:inline-block;background:#1c0b29;color:#fff;
+  border:2px solid #1c0b29;border-radius:999px;padding:6px 16px;
+  box-shadow:2px 2px 0 #d8a8ff;margin-bottom:16px;
+}
+.band-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+}
+.band-cell{
+  background:#f7edff;border:2px solid #1c0b29;border-radius:14px;
+  padding:16px;box-shadow:3px 3px 0 #1c0b29;
+}
+.band-cell .k{font-family:'Bungee';font-size:11px;letter-spacing:1.5px;color:#7a2fa8;margin-bottom:6px}
+.band-cell .v{font-family:'Fredoka';font-weight:600;font-size:15px;line-height:1.55;color:#1c0b29}
+.band-cell .v strong{font-family:'Rubik Bubbles';font-weight:400;font-size:22px;color:#7a2fa8;-webkit-text-stroke:1px #1c0b29;letter-spacing:1px}
+
+/* quote */
+.quote{
+  margin-top:36px;padding:26px 30px;border:3px dashed #fff;border-radius:22px;
+  background:rgba(255,255,255,.06);color:#f5eaff;position:relative;z-index:3;
+  font-family:'Caveat';font-weight:700;font-size:28px;text-align:center;line-height:1.35;
+}
+.quote::before,.quote::after{
+  font-family:'Bungee';font-size:46px;color:#d8a8ff;-webkit-text-stroke:2px #fff;
+  position:absolute;line-height:1;
+}
+.quote::before{content:"\201C";left:16px;top:8px}
+.quote::after{content:"\201D";right:16px;bottom:-20px}
+
+footer{
+  margin-top:40px;text-align:center;font-family:'Bungee';font-size:11px;letter-spacing:2px;
+  color:#d8a8ff;position:relative;z-index:3;
+}
+
+@media (max-width:780px){
+  .hero h1{font-size:58px}
+  .hero h1 em{font-size:22px}
+  .piece-1{grid-column:1 / span 12;aspect-ratio:7/5}
+  .piece-2{grid-column:1 / span 12;aspect-ratio:1/1}
+  .piece-3{grid-column:1 / span 12;aspect-ratio:4/3}
+  .band-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="back" href="index.html">← BACK</a>
+      <div class="brand">watasi siyoon</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <span class="chip">SUBJECT · 집요한의 커미션아트</span>
+      <h1>
+        COMMISSION<br>ART
+        <em>집요한의 커미션아트 · 2026</em>
+      </h1>
+      <p class="lead">검과 리본, 그림자와 빛 — 집요한이 그려낸 캐릭터 한 컷.<br>각 커미션은 단 한 번, 단 한 사람을 위한 일러스트.</p>
+      <div class="meta">
+        <span>#ILLUSTRATION</span>
+        <span>#CHARACTER</span>
+        <span>#COMMISSION</span>
+        <span>#2026</span>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery">
+      <div class="piece piece-1">
+        <div class="badge">01 · PALE</div>
+        <img src="커미션1.png" alt="커미션 1">
+        <div class="cap"><span>흐릿한 보랏빛 오후</span><em>SOFT · PURPLE</em></div>
+      </div>
+      <div class="piece piece-2">
+        <div class="badge">02 · GLOW</div>
+        <img src="커미션2.png" alt="커미션 2">
+        <div class="cap"><span>반쯤 감은 눈</span><em>HALF · LIGHT</em></div>
+      </div>
+      <div class="piece piece-3">
+        <div class="badge">03 · SHADOW</div>
+        <img src="커미션3.png" alt="커미션 3">
+        <div class="cap"><span>깊어지는 밤의 채도</span><em>DEEP · MONO</em></div>
+      </div>
+    </section>
+
+    <!-- INFO BAND -->
+    <section class="band">
+      <h2>ABOUT THIS SERIES</h2>
+      <div class="band-grid">
+        <div class="band-cell">
+          <div class="k">ARTIST</div>
+          <div class="v"><strong>집요한</strong><br>세 장의 변주로 하나의 캐릭터를 완성한다.</div>
+        </div>
+        <div class="band-cell">
+          <div class="k">STYLE</div>
+          <div class="v"><strong>Semi-Realism</strong><br>반실사 일러스트 · 한정된 팔레트로 공기감을 표현.</div>
+        </div>
+        <div class="band-cell">
+          <div class="k">FORMAT</div>
+          <div class="v"><strong>1:1 / 4:3</strong><br>원본 해상도 제공 · SNS · 프린트 · 굿즈 활용 가능.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="quote">
+      한 사람을 위한 그림, 오래 바라보아도 질리지 않는 한 장 — 집요한의 커미션아트.
+    </div>
+
+    <footer>© WATASI SIYOON · COMMISSION PAGE</footer>
+  </div>
+</body>
+</html>
